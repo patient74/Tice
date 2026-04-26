@@ -90,7 +90,7 @@ This one line explains why the environment is not solvable by brute force:
 - if detection is low, big attacks still do little
 - if suppression rises, you need to adapt (or rest/build detection) instead of repeating
 
-The full implementation adds fatigue and resistance terms on top of this (see `core/t_cell.py`), but the core idea stays the same: **your attack only “counts” when the enabling signals are in place**.
+The full implementation adds fatigue and resistance terms on top of this, but the core idea stays the same: **your attack only “counts” when the enabling signals are in place**.
 ## Training setup
 
 We trained an instruction-tuned text model in three stages:
@@ -147,7 +147,7 @@ in a partially observable, multi-step environment with interacting subsystems.
 
 ## What the figure shows
 
-![TICE results](tice_results_story.png)
+![TICE results](tice_results.png)
 
 There are two useful ways to read this figure:
 
