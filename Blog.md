@@ -81,27 +81,16 @@ The reward function encourages real strategy rather than brute force:
 In other words, TICE does not reward “always attack.”
 It rewards timing.
 
-One way to see what “timing” means here is to write down the reward at timestep \(t\):
+The simplest way to see the coordination logic is to look at **effective damage**, which is (roughly) “attack strength × how well you can see the tumor × how suppressed you are”:
 
-\[
-\begin{aligned}
-r_t &= 10 \cdot (\Delta \text{tumor}) \cdot \mathbb{1}[\text{eradicated}] \\
-&\quad - 50 \cdot \mathbb{1}[\text{escaped}] \\
-&\quad - 0.5 \cdot f_T \\
-&\quad - 0.3 \cdot f_B \\
-&\quad - 2.0 \cdot d_{\text{tissue}} \\
-&\quad - 0.2 \cdot \max\Bigl(0, e_{\text{spent}} - 20 \cdot (\Delta \text{tumor})\Bigr) \\
-&\quad + 0.1
-\end{aligned}
-\]
+`effective_damage ≈ attack_base × detection × (1 − suppression)`
 
-where 
+This one line explains why the environment is not solvable by brute force:
 
-\[
-\Delta \text{tumor} = \text{tumor}_{t-1} - \text{tumor}_t,
-\]
+- if detection is low, big attacks still do little
+- if suppression rises, you need to adapt (or rest/build detection) instead of repeating
 
-\(f_T, f_B\) are T- and B-cell fatigue, \(d_{\text{tissue}}\) is tissue damage, and \(e_{\text{spent}}\) is the combined energy spent by both subsystems at that step. This structure rewards reducing the tumor but also penalizes burning down resources or causing damage just to get short-term gains.
+The full implementation adds fatigue and resistance terms on top of this (see `core/t_cell.py`), but the core idea stays the same: **your attack only “counts” when the enabling signals are in place**.
 ## Training setup
 
 We trained an instruction-tuned text model in three stages:
