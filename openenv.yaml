@@ -1,10 +1,13 @@
-title: TICE
-emoji: "🧬"
-colorFrom: red
-colorTo: purple
-sdk: docker
-pinned: false
-app_port: 8000
-base_path: /web
-tags:
-  - openenv
+spec_version: 1
+name: tice
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+tasks:
+  - name: easy
+    description: Coordinate B-cell detection and T-cell attacks to eradicate an immune-cold tumor under partial observability.
+  - name: medium
+    description: Balance detection, aggression, and fatigue management against an immune-hot tumor with time pressure and noisy signals.
+  - name: hard
+    description: Adapt strategy mid-episode against a high-mutation tumor that changes stealth, resistance, and suppression over time.
