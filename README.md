@@ -1,3 +1,15 @@
+---
+title: Tice
+emoji: 🧬
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 8000
+tags:
+  - openenv
+---
+
 # TICE
 
 Tumor Immune Control Environment (TICE) is an OpenEnv reinforcement learning environment where an LLM learns to coordinate immune cells against an evolving tumor under partial observability.
