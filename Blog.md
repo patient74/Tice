@@ -153,7 +153,7 @@ in a partially observable, multi-step environment with interacting subsystems.
 
 ## What the figure shows
 
-![TICE results](tice_results_story.png)
+![TICE results](tice_results.png)
 
 There are two useful ways to read this figure:
 
