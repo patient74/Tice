@@ -84,19 +84,24 @@ It rewards timing.
 One way to see what “timing” means here is to write down the reward at timestep \(t\):
 
 \[
-r_t
-= 10 \cdot (\Delta \text{tumor})
- \mathbb{1}[\text{eradicated}] \cdot 50
-- \mathbb{1}[\text{escaped}] \cdot 50
-- 0.5 \cdot f_T
-- 0.3 \cdot f_B
-- 2.0 \cdot d_{\text{tissue}}
-- 0.2 \cdot \max\left(0, e_{\text{spent}} - 20 \cdot (\Delta \text{tumor})\right)
-- 0.1
+\begin{aligned}
+r_t &= 10 \cdot (\Delta \text{tumor}) \cdot \mathbb{1}[\text{eradicated}] \\
+&\quad - 50 \cdot \mathbb{1}[\text{escaped}] \\
+&\quad - 0.5 \cdot f_T \\
+&\quad - 0.3 \cdot f_B \\
+&\quad - 2.0 \cdot d_{\text{tissue}} \\
+&\quad - 0.2 \cdot \max\Bigl(0, e_{\text{spent}} - 20 \cdot (\Delta \text{tumor})\Bigr) \\
+&\quad + 0.1
+\end{aligned}
 \]
 
-where \(\Delta \text{tumor} = \text{tumor}_{t-1} - \text{tumor}_t\), \(f_T, f_B\) are T- and B-cell fatigue, \(d_{\text{tissue}}\) is tissue damage, and \(e_{\text{spent}}\) is the combined energy spent by both subsystems at that step. This structure rewards reducing the tumor, but also penalizes burning down resources or causing damage just to get short-term gains.
+where 
 
+\[
+\Delta \text{tumor} = \text{tumor}_{t-1} - \text{tumor}_t,
+\]
+
+\(f_T, f_B\) are T- and B-cell fatigue, \(d_{\text{tissue}}\) is tissue damage, and \(e_{\text{spent}}\) is the combined energy spent by both subsystems at that step. This structure rewards reducing the tumor but also penalizes burning down resources or causing damage just to get short-term gains.
 ## Training setup
 
 We trained an instruction-tuned text model in three stages:
@@ -153,7 +158,7 @@ in a partially observable, multi-step environment with interacting subsystems.
 
 ## What the figure shows
 
-![TICE results](tice_results.png)
+![TICE results](tice_results_story.png)
 
 There are two useful ways to read this figure:
 
