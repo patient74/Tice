@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tice"
+version = "0.1.0"
+description = "Tumor Immune Control Environment - OpenEnv compatible RL environment"
+requires-python = ">=3.10"
+dependencies = [
+    "openenv-core[core]>=0.2.2",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "matplotlib",
+]
+llm = [
+    "openai>=1.30.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+server = "tice.server.app:main"
+
+[tool.setuptools]
+include-package-data = true
+packages = ["tice", "tice.server", "tice.core", "tice.data"]
+package-dir = { "tice" = ".", "tice.server" = "server", "tice.core" = "core", "tice.data" = "data" }
+
+[tool.uv]
+package = false
